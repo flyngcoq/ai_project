@@ -185,6 +185,14 @@
   },
   "active": "4e3cb88c49a093c2",
   "lastOpenFiles": [
+    "sessions/2026-05-02T11-07/_report.md",
+    "sessions/2026-05-02T11-07/secretary.md",
+    "sessions/2026-05-02T11-07/developer.md",
+    "sessions/2026-05-02T11-03/_report.md",
+    "sessions/2026-05-02T11-07/_brief.md",
+    "sessions/2026-05-02T11-07",
+    "sessions/2026-05-02T11-03/secretary.md",
+    "sessions/2026-05-02T11-03/researcher.md",
     "sessions/2026-05-02T11-03/_brief.md",
     "sessions/2026-05-02T10-57/_report.md",
     "sessions/2026-05-02T11-03",
@@ -205,8 +213,6 @@
     "_agents/developer/goal.md",
     "_agents/developer/prompt.md",
     "_agents/developer/memory.md",
-    "_agents/designer/prompt.md",
-    "_agents/designer/memory.md",
     "sessions/2026-05-02T10-57"
   ]
 }
