@@ -183,8 +183,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "c3216061e2ccf05a",
+  "active": "4e3cb88c49a093c2",
   "lastOpenFiles": [
+    "sessions/2026-05-02T11-03/_brief.md",
+    "sessions/2026-05-02T10-57/_report.md",
+    "sessions/2026-05-02T11-03",
     "sessions/2026-05-02T10-57/secretary.md",
     "_agents/ceo/config.md",
     "_agents/ceo/memory.md",
