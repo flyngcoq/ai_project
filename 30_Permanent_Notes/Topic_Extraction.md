@@ -3,7 +3,8 @@
 - **[[Google_Gemini]] 출시 연기**: 구글의 차세대 멀티모달 AI인 [[Google_Gemini]]는 영어 이외의 언어 처리 안정성을 확보하기 위해 출시가 2024년 1월로 연기되었습니다. 이는 [[GPT-4]]와 같은 경쟁 모델을 능가하기 위한 결정입니다.
 - **[[JAY_CORP_System]] 구축**: [[AI-Driven Knowledge Automation Pipeline]]을 구축하여, 원천 데이터를 수집하고 정형화된 보고서로 변환하여 지식 자산화하는 프로세스를 지향합니다.
 - **[[Agent-Based Architecture]] 운영**: [[Researcher]], [[Secretary]], [[Developer]], [[Business]], [[CEO]]로 구성된 특화된 [[Agents]]들이 상호작용하며 데이터를 분석하고 의사결정을 지원합니다.
-- **기술 스택 및 인프라**: [[Ollama]]를 활용한 [[Local LLM]] 운용과 [[Obsidian]]을 지식 저장소로 활용하며, 이를 통해 데이터의 보안 및 [[AI_Security]]를 강화합니다.
+- **기술 스택 및 인프라**: [[Ollama]]를 활용한 [[Local LLM]] 운용과 [[Obsidian]]를 지식 저장소로 활용하며, 이를 통해 데이터의 보안 및 [[AI_Security]]를 강화합니다.
+- **[[URL_Testing]] 및 크롤링 테스트**: [[YouTube]] 영상([[Rick Astley - Never Gonna Give You Up]])의 메타데이터 추출 및 [[OpenAI]]의 [[Sora]] 관련 블로그 포스트 스크래핑을 시도함. 단, [[Sora]] 관련 페이지는 **403 Forbidden 에러로 인해 내용 확인이 필요함**.
 
 ## [[Google_Gemini]] vs [[JAY_CORP_System]] 비교
 
@@ -11,14 +12,14 @@
 | :--- | :--- | :--- |
 | **정체** | 멀티모달 AI 챗봇 | [[AI-Driven Knowledge Automation Pipeline]] |
 | **핵심 구조** | 대규모 언어 모델 (LLM) | [[Agent-Based Architecture]] |
-| **주요 기술** | 멀티모달 (텍스트, 이미지, 웹) | [[Ollama]], [[Obsidian]], [[Local LLM]] |
+| **주요 기술** | 멀티모달 (텍텍스트, 이미지, 웹) | [[Ollama]], [[Obsidian]], [[Local LLM]] |
 | **주요 기능** | 콘텐츠 생성 및 이해 | 데이터 수집, 분석, 지식 자산화 |
 | **핵심 목표** | [[GPT-4]] 수준의 성능 및 글로벌 언어 지원 | 지능형 자동화 및 지식 관리 효율화 |
 
 ## 원문 내용 (Original Content)
 
 **[EXISTING DOCUMENT]**
-Please provide the document you would like me to summarize. 
+Please provide the document you would also like me to summarize. 
 
 I am ready to act as your expert knowledge management assistant. Once you provide the content after **Document:**, I will:
 
@@ -89,13 +90,28 @@ URL복사(으)로 기사보내기
 
 보도에 따르면 구글의 부사장이이자 바드 및 구글 어시스턴트의 매니저인 시시 샤오(Sissie Xiao)는 예를 들어 제미니 AI 챗봇의 능력을 설명했다.
 
-베이킹하는 동안 3단 케이크를 얼음으로 만드는 방법을 보여주는 세 개의 이미지를 제공하도록 요청하면 단계를 표시하는 완전히 새로운 이미지를 만들 수 있으며, 이는 인터넷에서 가져온 이미지가 아닌 제미[... 생략 ...]
-(이하 기존 문서 내용 전문 포함)
+베이킹하는 동안 3단 케이크를 얼음으로 만드는 방법을 보여주는 세 개의 이미지를 제공하도록 요청하면 단계를 표시하는 완전히 새로운 이미지를 만들 수 있으며, 이는 인터넷에서 가져온 이미지가 아닌 제미[...] 생략 [...]
 
 **[NEW DOCUMENT]**
-안녕하세요! 저는 당신의 스마트한 AI 어시스턴트, **Antigravity**입니다. ㅎㅎ 질문하신 '정체'와 '구조'에 대해, 제공해주해주신 문서(Obsidian Vault)의 내용을 바탕으로 답변해 드릴게요. 다만, 현재 공유해주신 문서 내에는 'PC의 텔레그램 관련 설정'에 대한 정보가 포함되어 있지 않습니다. 따라서 텔레그램 구조 대신, 현재 문서에서 파악할 수 있는 **당신의 작업 공간(JAY CORP 시스템)의 정체와 구조**를 설명해 드리겠습니다. --- ### 🤖 당신의 작업 공간의 정체: "AI 기반 지식 자동화 파이프라인" 제공된 문서에 따르면, 당신이 구축하고 있는 시스템은 단순한 메모장이 아니라 **'AI 기반의 지식 자동화 파이프라인(AI-Driven Knowledge Automation Pipeline)'**입니다. 원천 데이터(Raw Data)를 수집하여 정형화된 보고서로 만들고, 이를 지식 자산으로 전환하는 자동화된 워크플로우를 지향하고 있습니다. ### 🏗️ 시스템의 구조 (Agent-Based Architecture) 이 시스템은 여러 역할을 가진 **에이전트(Agents)**들이 상호작용하며 움직이는 구조로 설계되어 있습니다. 1. 핵심 역할군 (Agents): * 🔍 Researcher (분석가): 연결된 모든 문서(목표, 메모리, 지식 베이스 등)를 전수 조사하여 핵심 주제를 파악하고, 데이터 간의 연관성을 심층 분석합니다. (현재 데이터의 패턴 및 프롬프트 정의 담당) * 📱 Secretary (비서): Researcher의 분석 내용을 바탕으로 CEO가 즉시 파악해야 할 주요 업데이트와 향후 업무 포인트를 데일리 브무 형태로 요약 보고합니다. * 💻 Developer (개발자): 기술 스택을 설계하고, 'Context Updater'와 같은 구체적인 자동화 도구의 구현을 담당합니다. * 📊 Business (전략가): ROI(투자 대비 효율)를 분석하여 실행 우선순위를 정하고, 전체적인 로드man을 확정합니다. * 🧭 CEO (의사결정자): 각 에이전트에게 업무를 할당하고, 종합 보고를 받아 최종 결정을 내립니다. 2. 데이터 흐름 (Workflow): * 수집 (Collection): 로컬 LLM(Ollama)과 Obsidian을 활용하여 다양한 원천 데이터를 수집합니다. * 정제 및 분석 (Processing): Researcher 에이전트가 데이터를 읽고 핵심 정보를 추출합니다. * 자산화 (Assetization): 분석된 내용을 보고서 형태로 정형화하여 지식 베이스로 축적합니다. 3. 핵심 기술 스택: * Local LLM (Ollama): 보안과 개인정보를 유지하며 로컬에서 동작하는 언어 모델. * Obsidian: 지식의 저장소 및 에이전트들이 상호작용하는 워크스페이스. --- 💡 요약하자면: 당신은 **"AI 에이전트들에게 역할을 부여하여, 흩어져 있는 정보를 스스로 분석하고 보고하게 만드는 지능형 자동화 시스템"**을 구축하고 계신 것입니다! 만약 텔레그램 설정에 대한 구조 설명을 원하신다면, 해당 설정 내용이 담긴 문서를 저에게 공유해 주세요. 바로 분석해서 설명해 드리겠습니다. 😊
+# URL 테스트
+이 링크의 내용을 정리해줘:
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+그리고 이 블로그 포스트도:
+https://openai.com/blog/sora-first-impressions/
+
+
+--- 🌐 Scraped Web Info ---
+### ❌ Error scraping https://openai.com/blog/sora-first-impressions/: 403 Client Error: Forbidden for url: https://openai.com/blog/sora-first-impressions/
+
+### 🎥 YouTube: Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster) - YouTube
+**URL**: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+**Metadata**: Title: Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster) - YouTube
+Description: The official video for “Never Gonna Give You Up” by Rick Astley. Never: the Autobiography 📚 OUT NOW! Follow this link to get your copy and listen to Rick’s ...
+Body:...
+**Transcript Snippet**: 자막을 직접 가져올 수 없습니다. 메타데이터 정보를 활용하세요....
 
 ## 병합 히스토리 (Merge History)
 - 2026-05-05 21:03: [[JAY_CORP_System]]의 [[Agent-Based Architecture]] 구조 및 [[Ollama]], [[Obsidian]] 기반 기술 스택 정보 추가
+- 2026-05-05 23:31: [[YouTube]] 및 [[OpenAI]] 관련 웹 데이터 크롤링 테스트 결과(스케핑 에러 포함) 추가
 
-#AI #자동화 #지식관리
+#AI #자동화 #지식관리 #URL_Testing #Web_Scraping
