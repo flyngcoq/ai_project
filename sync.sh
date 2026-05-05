@@ -13,10 +13,13 @@ fi
 echo "Staging changes..."
 git add .
 
-echo "Committing changes..."
-git commit -m "Auto-sync: $(date +'%Y-%m-%d %H:%M:%S')"
+echo "Committing local changes (if any)..."
+git commit -m "Auto-sync: $(date +'%Y-%m-%d %H:%M:%S')" || echo "No local changes to commit."
 
-echo "Pushing to origin..."
+echo "Pulling latest changes from Github..."
+git pull origin main --rebase
+
+echo "Pushing everything to origin..."
 git push origin main
 
 echo "Sync completed!"
