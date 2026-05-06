@@ -13,16 +13,20 @@ INBOX_DIR = "/Users/flyngcoq/AI_Project/Obsidian_Vault/00_Inbox"
 
 class InboxHandler(FileSystemEventHandler):
     def on_created(self, event):
-        if not event.is_directory and event.src_path.endswith('.md'):
+        allowed_extensions = {'.md', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.pdf', '.csv', '.xlsx', '.xls'}
+        if not event.is_directory and Path(event.src_path).suffix.lower() in allowed_extensions:
             print(f"\n🚀 [새 파일 감지됨] {Path(event.src_path).name}")
             print("AI 자동 요약 파이프라인을 가동합니다...")
             
             try:
                 import sys
                 import shutil
-                # Check for trigger command
-                with open(event.src_path, 'r', encoding='utf-8') as f:
-                    content = f.read()
+                
+                # Only check for triggers in markdown files
+                content = ""
+                if event.src_path.endswith('.md'):
+                    with open(event.src_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
                     
                 if "@confl 주간보고 작성" in content:
                     print("🔔 Confluence 주간 보고서 트리거 감지! (generate_report.py 실행)")

@@ -5,31 +5,12 @@ import datetime
 import shutil
 from pathlib import Path
 
-# Configuration
-OLLAMA_API_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "gemma4:26b-a4b-it-q4_K_M"
-VAULT_DIR = Path("/Users/flyngcoq/AI_Project/Obsidian_Vault")
-FLEETING_DIR = VAULT_DIR / "10_Fleeting_Notes"
-LIT_DIR = VAULT_DIR / "20_Literature_Notes"
-PERM_DIR = VAULT_DIR / "30_Permanent_Notes"
+# Use core modules
+from core.config import VAULT_DIR, FLEETING_DIR, LIT_DIR, PERM_DIR
+from core.llm_client import generate_with_ollama
+
 PROJECTS_DIR = VAULT_DIR / "40_Projects"
-
 PROJECTS_DIR.mkdir(parents=True, exist_ok=True)
-
-def generate_with_ollama(prompt, context_text):
-    data = {
-        "model": MODEL_NAME,
-        "prompt": f"{prompt}\n\n[DATA TO PROCESS]\n{context_text}",
-        "stream": False
-    }
-    req = urllib.request.Request(OLLAMA_API_URL, data=json.dumps(data).encode('utf-8'), headers={'Content-Type': 'application/json'})
-    try:
-        with urllib.request.urlopen(req) as response:
-            result = json.loads(response.read().decode('utf-8'))
-            return result.get("response", "")
-    except Exception as e:
-        print(f"Ollama API Error: {e}")
-        return None
 
 def publish_to_confluence(title, content_md):
     # Try to load .env variables manually
