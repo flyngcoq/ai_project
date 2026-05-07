@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "6a6d855bf46fa22c",
+        "id": "60c645cd43b35add",
         "type": "tabs",
         "children": [
           {
-            "id": "c3216061e2ccf05a",
+            "id": "5c4dd16c8f4a0077",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "Obsidian_Vault/40_Projects/Work/Safe_AI/Next_Gen_AI_Security_Strategy.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Next_Gen_AI_Security_Strategy"
             }
           }
         ]
@@ -68,6 +72,16 @@
               "state": {},
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
+            }
+          },
+          {
+            "id": "92cecb85c3fc1b06",
+            "type": "leaf",
+            "state": {
+              "type": "VIEW_TYPE_LONGFORM_EXPLORER",
+              "state": {},
+              "icon": "longform",
+              "title": "Longform"
             }
           }
         ]
@@ -176,53 +190,54 @@
       "bases:Create new base": false
     }
   },
-  "active": "4e3cb88c49a093c2",
+  "active": "5c4dd16c8f4a0077",
   "lastOpenFiles": [
-    "Obsidian_Vault/40_Projects/Work/New_Data_Analysis_Report.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/경쟁력 확보/동형암호/0401 회의록.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/경쟁력 확보/경쟁차별화/2. 경쟁력 강화 및 차별화.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/신기술_동형암호/2. 0401_동형암호_회의록.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/신기술_동형암호/1. 동형암호_기술_분석서.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/5. 차별화 idea.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/4. 솔루션_기능_비교표.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/1. 경쟁력_강화_전략.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/3. 핵심_차별화_포인트.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/2. 주요_경쟁사_분석.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/0429_포티넷_미팅_요약.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/03_세일즈_및_제안/Archive/Safe_AI_투자심의서_v3.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/03_세일즈_및_제안/Archive/Safe_AI_투자심의서_v2.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/03_세일즈_및_제안/Archive/Safe_AI_투자심의서_YS.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/03_세일즈_및_제안/Archive/Safe_AI_투자심의서.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/01_기획_및_목표/Archive_05_MVP_상세기획(4월말 target)/3. 개발_WBS_및_로드맵.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/01_기획_및_목표/Archive_05_MVP_상세기획(4월말 target)/2. User_Portal_상세기획표.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/01_기획_및_목표/Archive_05_MVP_상세기획(4월말 target)/1. Admin_Portal_상세기획표.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/01_기획_및_목표/Archive/7. 추진_ToDo_리스트.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/01_기획_및_목표/Archive/4. 분기별_파일럿_운영목표.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/01_기획_및_목표/05_MVP_상세기획(4월말 target)/1. Admin_Portal_상세기획표.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/경쟁력 확보/동형암호",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/회의록/신한은행 회의록.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/경쟁력 확보/경쟁차별화",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/src/requirements.txt",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/src/main.py",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/src/inspection.py",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/src/auth.py",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/skills/ship.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/skills/review-all.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/skills/retro.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/skills/profitability.md",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/Study/URLS",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/신기술_동형암호",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화",
-    "Obsidian_Vault/40_Projects/Work/Safe_AI/03_세일즈_및_제안/Archive",
-    "50_Resources/Attachments/test.jpg",
-    "50_Resources/Attachments/Telegram_Photo_20260506_000223.jpg",
-    "50_Resources/Attachments/Telegram_Photo_20260506_000204.jpg",
-    "50_Resources/Attachments/Telegram_Photo_20260505_223548.jpg",
-    "Obsidian_Vault/50_Resources/Attachments/Telegram_Photo_20260506_000204.jpg",
-    "Obsidian_Vault/50_Resources/Attachments/Telegram_Photo_20260506_000223.jpg",
-    "Obsidian_Vault/00_Inbox/Telegram_Photo_20260506_000223.jpg",
-    "Obsidian_Vault/00_Inbox/Telegram_Photo_20260506_000204.jpg",
-    "Obsidian_Vault/50_Resources/Attachments/test.jpg",
-    "Obsidian_Vault/00_Inbox/test.jpg"
+    "short.md",
+    "Archive/Todo_Reminders.md",
+    "50_Resources/Work/Attachments/Telegram_Photo_20260507_092625.jpg",
+    "50_Resources/Work/Attachments",
+    "50_Resources/Work",
+    "50_Resources/Wealth/Attachments/Telegram_Photo_20260507_092220.jpg",
+    "50_Resources/Wealth/Attachments/Telegram_Photo_20260507_092218.jpg",
+    "50_Resources/Wealth/Attachments/Telegram_Photo_20260506_103523.jpg",
+    "50_Resources/Wealth/Attachments",
+    "50_Resources/Wealth",
+    "40_Projects/Work/Safe_AI/경쟁력 확보/동형암호/0401 회의록.md",
+    "40_Projects/Work/Safe_AI/경쟁력 확보/경쟁차별화/2. 경쟁력 강화 및 차별화.md",
+    "40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/신기술_동형암호/2. 0401_동형암호_회의록.md",
+    "40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/신기술_동형암호/1. 동형암호_기술_분석서.md",
+    "40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/5. 차별화 idea.md",
+    "40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/4. 솔루션_기능_비교표.md",
+    "40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/3. 핵심_차별화_포인트.md",
+    "40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/2. 주요_경쟁사_분석.md",
+    "40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/1. 경쟁력_강화_전략.md",
+    "40_Projects/Work/Safe_AI/04_경쟁력_및_차별화/경쟁차별화/0429_포티넷_미팅_요약.md",
+    "40_Projects/Work/Safe_AI/03_세일즈_및_제안/Archive/Safe_AI_투자심의서_v3.md",
+    "40_Projects/Work/Safe_AI/03_세일즈_및_제안/Archive/Safe_AI_투자심의서_v2.md",
+    "40_Projects/Work/Safe_AI/03_세일즈_및_제안/Archive/Safe_AI_투자심의서_YS.md",
+    "40_Projects/Work/Safe_AI/03_세일즈_및_제안/Archive/Safe_AI_투자심의서.md",
+    "40_Projects/Work/Safe_AI/01_기획_및_목표/Archive_05_MVP_상세기획(4월말 target)/3. 개발_WBS_및_로드맵.md",
+    "40_Projects/Work/Safe_AI/01_기획_및_목표/Archive_05_MVP_상세기획(4월말 target)/2. User_Portal_상세기획표.md",
+    "40_Projects/Work/Safe_AI/01_기획_및_목표/Archive_05_MVP_상세기획(4월말 target)/1. Admin_Portal_상세기획표.md",
+    "40_Projects/Work/Safe_AI/01_기획_및_목표/Archive/7. 추진_ToDo_리스트.md",
+    "40_Projects/Work/Safe_AI/01_기획_및_목표/Archive/4. 분기별_파일럿_운영목표.md",
+    "40_Projects/Work/Safe_AI/01_기획_및_목표/05_MVP_상세기획(4월말 target)/1. Admin_Portal_상세기획표.md",
+    "40_Projects/Work/Safe_AI/회의록/신한은행 회의록.md",
+    "40_Projects/Work/Safe_AI/경쟁력 확보/동형암호",
+    "40_Projects/Work/Safe_AI/경쟁력 확보/경쟁차별화",
+    "40_Projects/Work/Safe_AI/skills/ship.md",
+    "40_Projects/Work/Safe_AI/skills/review-all.md",
+    "40_Projects/Work/Safe_AI/skills/retro.md",
+    "40_Projects/Work/Safe_AI/src/requirements.txt",
+    "40_Projects/Work/Safe_AI/src/inspection.py",
+    "40_Projects/Work/Safe_AI/src/main.py",
+    "40_Projects/Work/Safe_AI/src/auth.py",
+    "Obsidian_Vault/50_Resources/Work/Attachments/Telegram_Photo_20260507_092625.jpg",
+    "Obsidian_Vault/50_Resources/Wealth/Attachments/Telegram_Photo_20260507_092220.jpg",
+    "Obsidian_Vault/00_Inbox/Telegram_Photo_20260507_092625.jpg",
+    "Obsidian_Vault/50_Resources/Wealth/Attachments/Telegram_Photo_20260507_092218.jpg",
+    "Obsidian_Vault/00_Inbox/Telegram_Photo_20260507_092220.jpg",
+    "Obsidian_Vault/00_Inbox/Telegram_Photo_20260507_092218.jpg",
+    "Untitled.canvas"
   ]
 }
