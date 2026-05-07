@@ -1,7 +1,7 @@
 import pdfplumber
 from pathlib import Path
 
-pdf_path = "/Users/flyngcoq/AI_Project/Obsidian_Vault/40_Projects/Work/Safe_AI/인공지능(AI) 보안 안내서.pdf"
+pdf_path = "/Users/flyngcoq/AI_Project/40_Projects/Work/Safe_AI/인공지능(AI) 보안 안내서.pdf"
 
 def extract_pdf_text(path):
     text = ""

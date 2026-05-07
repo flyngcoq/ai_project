@@ -9,7 +9,7 @@ from core.llm_client import generate_with_ollama
 
 PROJECT_ROOT = Path(__file__).parent.parent
 AGENTS_ROOT = PROJECT_ROOT / "_agents"
-REPORTS_DIR = PROJECT_ROOT / "Obsidian_Vault" / "40_Projects" / "Work"
+REPORTS_DIR = PROJECT_ROOT / "40_Projects" / "Work"
 
 def run_weekly_audit():
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)

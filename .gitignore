@@ -24,5 +24,3 @@ _tmp/
 .obsidian/workspace.json
 .obsidian/graph.json
 .obsidian/appearance.json
-credentials.json
-service_account.json

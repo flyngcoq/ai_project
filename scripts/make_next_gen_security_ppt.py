@@ -183,7 +183,7 @@ def create_ppt():
         "U+ Safe AI: 가장 안전한 기업용 AI 업무 환경의 표준이 되겠습니다."
     ])
 
-    save_path = "/Users/flyngcoq/AI_Project/Obsidian_Vault/40_Projects/Work/Safe_AI/Next_Gen_AI_Security_Strategy.pptx"
+    save_path = "/Users/flyngcoq/AI_Project/40_Projects/Work/Safe_AI/Next_Gen_AI_Security_Strategy.pptx"
     prs.save(save_path)
     print(f"✅ PPT 생성 완료: {save_path}")
 
