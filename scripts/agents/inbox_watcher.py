@@ -1,3 +1,6 @@
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
 import time
 import subprocess
 from pathlib import Path
@@ -40,7 +43,7 @@ class InboxHandler(FileSystemEventHandler):
                     print("✅ 주간 보고서 생성 파이프라인 완료!\n")
                     return
 
-                script_path = Path(__file__).parent / "process_markdowns.py"
+                script_path = Path(__file__).parent.parent / "reports" / "process_markdowns.py"
                 subprocess.run([sys.executable, str(script_path)], check=True)
                 print("✅ AI 처리 완료!\n")
             except Exception as e:
