@@ -9,7 +9,9 @@ load_dotenv(dotenv_path=env_path)
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-OLLAMA_API_URL = "http://localhost:11434/api/chat"
+LOCAL_OLLAMA_URL = "http://localhost:11434/api/chat"
+OLLAMA_API_URL = os.getenv("SAFE_AI_GATEWAY_URL", LOCAL_OLLAMA_URL)
+SAFE_AI_GATEWAY_TOKEN = os.getenv("SAFE_AI_GATEWAY_TOKEN")
 MODEL_NAME = "gemma4:26b-a4b-it-q4_K_M"
 
 VAULT_DIR = Path("/Users/flyngcoq/AI_Project")

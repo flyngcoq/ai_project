@@ -14,10 +14,17 @@ def create_ppt():
     
     # Define Colors based on Design System
     PURPLE = RGBColor(0x7B, 0x3C, 0xE9)
+    NAVY = RGBColor(0x0F, 0x17, 0x2A)
     BLACK = RGBColor(0x1F, 0x1F, 0x1F)
     WHITE = RGBColor(0xFF, 0xFF, 0xFF)
     GRAY = RGBColor(0x66, 0x66, 0x66)
     LIGHT_GRAY = RGBColor(0xF3, 0xF4, 0xF6)
+    CYAN = RGBColor(0x06, 0xB6, 0xD4)
+
+    # Image Paths (using absolute paths provided by the tool)
+    DASHBOARD_IMG = "/Users/flyngcoq/.gemini/antigravity/brain/af9a080a-1e6d-421a-a8ce-ac2d4471de65/ai_security_dashboard_futuristic_1778200297333.png"
+    LIFECYCLE_IMG = "/Users/flyngcoq/.gemini/antigravity/brain/af9a080a-1e6d-421a-a8ce-ac2d4471de65/ai_lifecycle_governance_concept_1778200311426.png"
+    REASONING_IMG = "/Users/flyngcoq/.gemini/antigravity/brain/af9a080a-1e6d-421a-a8ce-ac2d4471de65/ai_agent_reasoning_guardrail_1778200328140.png"
 
     def set_slide_background(slide, color):
         background = slide.background
@@ -27,164 +34,235 @@ def create_ppt():
 
     def add_title_slide(title_text, subtitle_text):
         slide = prs.slides.add_slide(prs.slide_layouts[6])
-        set_slide_background(slide, BLACK)
+        set_slide_background(slide, NAVY)
+        
+        # Dashboard Image as background (faded or half-side)
+        slide.shapes.add_picture(DASHBOARD_IMG, Inches(5), Inches(0), height=Inches(7.5))
+        
+        # Title Box with Semi-transparent background (simulated with shape)
+        shape = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0), Inches(0), Inches(5.5), Inches(7.5))
+        shape.fill.solid()
+        shape.fill.fore_color.rgb = NAVY
+        shape.line.fill.background()
         
         # Main Title
-        title_box = slide.shapes.add_textbox(Inches(0.5), Inches(3), Inches(9), Inches(1.5))
+        title_box = slide.shapes.add_textbox(Inches(0.5), Inches(2.5), Inches(4.5), Inches(2))
         tf = title_box.text_frame
+        tf.word_wrap = True
         p = tf.paragraphs[0]
         p.text = title_text
         p.font.bold = True
-        p.font.size = Pt(44)
+        p.font.size = Pt(40)
         p.font.color.rgb = WHITE
         p.alignment = PP_ALIGN.LEFT
         
         # Subtitle
-        sub_box = slide.shapes.add_textbox(Inches(0.5), Inches(4.5), Inches(9), Inches(1))
+        sub_box = slide.shapes.add_textbox(Inches(0.5), Inches(4.5), Inches(4.5), Inches(1))
         tf = sub_box.text_frame
         p = tf.paragraphs[0]
         p.text = subtitle_text
-        p.font.size = Pt(20)
-        p.font.color.rgb = PURPLE
+        p.font.size = Pt(18)
+        p.font.color.rgb = CYAN
         p.alignment = PP_ALIGN.LEFT
 
-    def add_content_slide(title_text, points):
+    def add_content_slide(title_text, content_items, image_path=None, table_data=None):
         slide = prs.slides.add_slide(prs.slide_layouts[6])
         set_slide_background(slide, WHITE)
         
-        # Header Line
+        # Header Line & Title
         line = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(0.5), Inches(0.4), Inches(0.1), Inches(0.5))
         line.fill.solid()
         line.fill.fore_color.rgb = PURPLE
         line.line.fill.background()
         
-        # Title
         title_box = slide.shapes.add_textbox(Inches(0.7), Inches(0.3), Inches(8), Inches(0.7))
         tf = title_box.text_frame
         p = tf.paragraphs[0]
         p.text = title_text
         p.font.bold = True
-        p.font.size = Pt(28)
-        p.font.color.rgb = BLACK
+        p.font.size = Pt(24)
+        p.font.color.rgb = NAVY
         
-        # Content
+        # Main Layout: If image, split 50/50. If table, handle separately.
+        content_width = Inches(9) if not image_path else Inches(4.5)
         top = 1.2
-        for point in points:
-            if isinstance(point, str):
-                box = slide.shapes.add_textbox(Inches(0.5), Inches(top), Inches(9), Inches(0.5))
-                tf = box.text_frame
-                p = tf.paragraphs[0]
-                p.text = "• " + point
-                p.font.size = Pt(18)
-                p.font.color.rgb = BLACK
-                top += 0.4
-            elif isinstance(point, list):
-                for sub in point:
-                    box = slide.shapes.add_textbox(Inches(0.8), Inches(top), Inches(8.5), Inches(0.4))
+        
+        # Image Handling
+        if image_path:
+            slide.shapes.add_picture(image_path, Inches(5.2), Inches(1.5), width=Inches(4.3))
+            
+        # Text Content
+        for item in content_items:
+            if isinstance(item, str):
+                if item.startswith("###"): # Subheader style
+                    box = slide.shapes.add_textbox(Inches(0.5), Inches(top), content_width, Inches(0.4))
                     tf = box.text_frame
                     p = tf.paragraphs[0]
+                    p.text = item.replace("###", "").strip()
+                    p.font.bold = True
+                    p.font.size = Pt(16)
+                    p.font.color.rgb = PURPLE
+                    top += 0.4
+                else:
+                    box = slide.shapes.add_textbox(Inches(0.5), Inches(top), content_width, Inches(0.5))
+                    tf = box.text_frame
+                    tf.word_wrap = True
+                    p = tf.paragraphs[0]
+                    p.text = "• " + item
+                    p.font.size = Pt(13)
+                    p.font.color.rgb = BLACK
+                    top += 0.35
+            elif isinstance(item, list):
+                for sub in item:
+                    box = slide.shapes.add_textbox(Inches(0.8), Inches(top), content_width - Inches(0.3), Inches(0.3))
+                    tf = box.text_frame
+                    tf.word_wrap = True
+                    p = tf.paragraphs[0]
                     p.text = "  - " + sub
-                    p.font.size = Pt(14)
+                    p.font.size = Pt(11)
                     p.font.color.rgb = GRAY
-                    top += 0.3
-                top += 0.2
+                    top += 0.28
+                top += 0.1
+        
+        # Table Handling
+        if table_data:
+            rows = len(table_data)
+            cols = len(table_data[0])
+            left = Inches(0.5)
+            top_table = top + 0.2
+            width = Inches(9)
+            height = Inches(0.3 * rows)
+            
+            table = slide.shapes.add_table(rows, cols, left, top_table, width, height).table
+            for r in range(rows):
+                for c in range(cols):
+                    cell = table.cell(r, c)
+                    cell.text = str(table_data[r][c])
+                    cell.text_frame.paragraphs[0].font.size = Pt(10)
+                    if r == 0:
+                        cell.fill.solid()
+                        cell.fill.fore_color.rgb = PURPLE
+                        cell.text_frame.paragraphs[0].font.color.rgb = WHITE
+                        cell.text_frame.paragraphs[0].font.bold = True
 
-    # 1. Title Slide
+    # --- PPT Slides Generation ---
+
+    # 1. Title
     add_title_slide("Next-Gen AI Security Strategy", "Beyond Gateway: 에이전틱 시대를 위한 초격차 보안 거버넌스")
-    
-    # 2. Market Context
-    add_content_slide("시장 상황: Gateway 레드오션과 신규 기회", [
-        "AI Gateway 시장 포화: 단순 트래픽 제어는 이미 Commodity화",
-        "Agentic Shift: 인간의 개입 없는 '자율형 에이전트' 도입 가속화",
-        "보안 패러다임의 변화:",
-        ["Perimeter(입구) → Behavior(행위) 중심의 보안으로 이동", "정적 룰셋 → 실시간 문맥(Context) 분석 필요성 증대"]
-    ])
-    
-    # 3. Strategy Pillar 1: AI-DSPM
-    add_content_slide("전략 Pillar 1: AI-Native DSPM", [
-        "벡터 DB 및 RAG 파이프라인 데이터 보안 형상 관리",
-        "핵심 기능:",
-        ["임베딩 데이터 내 민감 정보(PII) 의미적 스캔", "데이터 소스와 벡터 DB 간의 접근 권한 정합성 검증", "데이터 계보(Lineage) 추적을 통한 사고 발생 시 즉시 격리"]
-    ])
-    
-    # 4. Strategy Pillar 2: Agent-SPM (The Killer Item)
-    add_content_slide("전략 Pillar 2: Agent-SPM (Killer Item)", [
-        "자율형 에이전트 행동 거버넌스 및 실시간 통제",
-        "핵심 차별화 포인트:",
-        ["NHI(비인간 ID) 자산 관리: 에이전트별 최소 권한(PoLP) 강제", "Semantic Firewall: 에이전트의 추론 과정(CoT) 감시 및 차단", "기계 간 통신(A2A) 셧다운 시스템: 에이전트 폭주 방어"]
-    ])
-    
-    # 5. Field Insight: Shinhan Bank
-    add_content_slide("현장 인사이트: 신한은행 미팅 기반 페인포인트 해결", [
-        "행정 지옥 해소: 망분리 5호 예외 지정을 위한 'PaaS 래핑' 아키텍처",
-        "지능형 필터링: '공일공' 등 문맥적 우회 유출을 막는 Semantic DLP",
-        "실무 효율화:",
-        ["금감원/감사 대응용 보안 증적 리포트 원클릭 자동 생성", "1,000명 동시 접속 '트래픽 쓰나미' 안정적 스로틀링"]
-    ])
-    
-    # 6. K-Compliance Strategy
-    add_content_slide("한국 시장 특화 전략 (K-Compliance)", [
-        "망분리 완화 로드맵 대응: 하이브리드(내부/외부) 보안 브릿지 제공",
-        "혁신금융서비스 샌드박스 Accelerator:",
-        ["심사 통과를 위한 보안 검증 패키지 턴키 제공", "자율보안 체계 하에서의 '결과 책임' 방어권 확보"]
-    ])
-    
-    # 7. Competitive Edge
-    add_content_slide("경쟁 우위: 왜 Agent-SPM 인가?", [
-        "Gateway(외산 벤더): 트래픽 관리는 잘하나 한국 규제 및 AI 문맥 이해 부족",
-        "DSPM(데이터 보안): 유출 방지는 하나 자율형 에이전트의 행위 통제 불가",
-        "Agent-SPM(U+):",
-        ["국내 유일의 망분리 우회 컨설팅 결합", "AI의 자율성을 통제하는 독보적 런타임 보안 기술"]
-    ])
-    
-    # 8. Policy & Compliance Alignment
-    add_content_slide("정부 가이드라인(AI 보안 안내서) 대응 전략", [
-        "Anti-Poisoning: 학습 데이터 오염 및 AI 편향성 실시간 차단",
-        "Edge Security: AI 로봇/에지 기기의 무단 제어 및 탈취 방어",
-        "AI-Audit: 가이드라인 권고 '지속적 모니터링 및 로깅' 요건 충족",
-        "Result: 정부 지침을 100% 준수하는 '가장 안전한 금융 AI 인프라'"
+
+    # PART 1. 전략적 배경
+    add_content_slide("PART 1. 개요 및 전략적 배경", [
+        "### 전략적 개요",
+        "단순한 'AI 입구 보안(Gateway)'을 넘어선 'Full-Stack AI Governance' 구축",
+        "AI 모델의 생성-운영-폐기(Lifecycle) 전 과정에서의 데이터 안전성 및 추론 무결성 보장",
+        "2026년 에이전틱 AI(Agentic AI) 시대의 핵심 보안 인프라",
+        "### 전략 목표 (Strategic Objectives)",
+        "Visibility: 에이전트 사고 과정(CoT) 및 데이터 흐름의 완벽 가시성",
+        "Control: 자율형 AI 일탈 행위에 대한 실시간 'Kill-Switch'",
+        "Trust: 증명 가능한 보안 이력을 통한 AI 서비스 수용성 제고",
+        "Efficiency: 규제 대응 자동화를 통한 보안 조직 운영 효율 극대화"
+    ], image_path=DASHBOARD_IMG)
+
+    add_content_slide("글로벌 표준 부합성: Gartner AI TRiSM", [
+        "### AI TRiSM (Trust, Risk, and Security Management)",
+        "Gartner가 제시한 AI 거버넌스의 표준 프레임워크를 100% 구현",
+        "1. Trust (신뢰성): 설명 가능하고 투명한 AI (CoT 감시, Compliance XAI)",
+        "2. Risk (리스크): 데이터 유출 및 모델 환각 선제적 방어 (Semantic DLP, DSPM)",
+        "3. Security (보안): 런타임 공격 및 데이터 오염 실시간 차단 (Agent-SPM, Anti-Poisoning)",
+        "### Strategic Alignment",
+        "단순 정책 수립을 넘어선 '실시간 기술적 강제(Runtime Enforcement)' 기반의 초격차 거버넌스 제공"
     ])
 
-    # 9. CISO Persuasion Logic
-    add_content_slide("보안 담당자(CISO) 설득을 위한 Key Message", [
-        "Accountability: AI 사고 발생 시 '면책 근거(Safe Harbor)' 제공",
-        "Enabler: 혁신의 방해자가 아닌 '안전한 혁신(AX)의 조력자'로 위상 격상",
-        "Asset Protection: 데이터 유출을 넘어 '직접적 재무 손실(환각/오작동)' 방어",
-        "Compliance: 행정 지옥(샌드박스/보고서)으로부터의 완전한 해방"
+    add_content_slide("시장의 페인포인트 및 위협 환경", [
+        "입구 보안(North-South)의 한계: 내부 에이전트 간 통신(East-West) 보안 부재",
+        "의미론적 우회(Semantic Evasion): 문맥을 이용한 지능형 프롬프트 인젝션 급증",
+        "AI 블랙박스 리스크: 의사결정 근거 불투명으로 인한 책임 소재 불분명",
+        "섀도우 AI & 자산 방치: 관리되지 않는 모델 및 퇴역 모델 내 데이터 유출(Memory Leakage)",
+        "규제 피로도: 금감원/KISA/EU AI Act 등 복잡해지는 글로벌 규제 대응 한계"
     ])
 
-    # 10. Service Operation Flow
-    add_content_slide("U+ Safe AI 엔드투엔드 보안 프로세스", [
-        "0. AI-SPM: 인프라 및 모델 자산의 안전성 상시 점검",
-        "1. Semantic DLP: 사용자 요청의 문맥 분석 및 1차 필터링",
-        "2. AI-DSPM: RAG 참조 데이터의 민감 정보 마스킹 및 오염 차단",
-        "3. Agent-SPM: AI의 추론 과정(CoT) 실시간 감시 및 행위 통제",
-        "4. Compliance XAI: 전수 로깅 및 규제 대응 보고서 자동 생성"
+    edge_table = [
+        ["구분", "AI Gateway (Red Ocean)", "AI-DSPM (Growing)", "Agent-SPM (Blue Ocean)"],
+        ["관점", "통로(Perimeter) 중심", "데이터(Storage) 중심", "행위(Behavior) 중심"],
+        ["핵심 가치", "입구 차단, 속도 제한", "정보 유출 방지, 분류", "AI의 자율성 통제 및 책임"],
+        ["진입 장벽", "낮음 (오픈소스 다수)", "중간 (기술 가시성)", "높음 (LLM 추론 분석)"],
+        ["금융권 반응", "기본 인프라로 인식", "컴플라이언스 대응용", "AX 전면 도입을 위한 필수재"]
+    ]
+    add_content_slide("경쟁 우위 분석 (2026 Competitive Edge)", [
+        "기존 Gateway 시장은 이미 레드오션화 되었으며, '행위(Behavior)' 중심의 Agent-SPM이 차세대 블루오션으로 부상"
+    ], table_data=edge_table)
+
+    # PART 2. 서비스 아키텍처
+    add_content_slide("PART 2. Safe AI 3중 방어 체계 아키텍처", [
+        "### 4단계 통합 보안 레이어",
+        "LAYER 1: 인바운드 게이트웨이 (DLP, 쿼터, 서킷브레이커)",
+        "LAYER 2: 에이전트 추론 감시 (CoT 인터셉트, Shadow Reasoning)",
+        "LAYER 3: 데이터 및 RAG 보안 (PII 마스킹, 안티 포이즈닝)",
+        "LAYER 4: 거버넌스 및 자산 생애주기 (자동 보고, 완전 파기)",
+        "### 기술적 차별성",
+        "East-West 통신 보안: 에이전트 간(A2A) 및 외부 도구 호출 실시간 모니터링",
+        "증명 가능한 지능: 추론 근거 전수 기록 및 규제 리포팅 자동화"
+    ], image_path=REASONING_IMG)
+
+    # PART 3. 상세 정책
+    add_content_slide("핵심 기술: CoT 실시간 감시 및 Shadow Reasoning", [
+        "### 왜 입구(Prompt) 보안만으로는 부족한가?",
+        "간접 인젝션(Indirect Injection): 정상 요청 속에 숨겨진 악의적 지시는 추론 과정에서만 포착 가능",
+        "논리적 비약 방지: AI가 스스로 보안 절차를 생략하거나 규정을 우회하는 결정 차단",
+        "### 3단계 가드레일 메커니즘",
+        "1. 강제적 사고 노출 (Enforced Disclosure): <thought> 태그 내 추론 텍스트화",
+        "2. 실시간 토큰 인터셉트: 생성 즉시 게이트웨이 레벨 가로채기",
+        "3. 그림자 추론 검증 (Shadow Reasoning): 별도 경량 sLLM을 통한 실시간 스캔 및 Kill-Switch"
     ])
 
-    # 11. CoT Monitoring Mechanism
-    add_content_slide("초격차 기술: CoT(Chain of Thought) 실시간 감시", [
-        "Why: 단순 프롬프트 필터링(신분증 검사)은 '내부 행동'을 보장하지 못함",
-        "Case 1: 정상 요청 속에 숨겨진 '악의적 지시(Indirect Injection)' 탐지",
-        "Case 2: AI의 논리적 비약 및 환각에 의한 '규정 위반 결정' 선제 차단",
-        "Mechanism: 사고 노출 -> 토큰 인터셉트 -> Shadow Reasoning 검증",
-        "Result: 우회 불가능한 '증명 가능한 지능(Provable Intelligence)' 구현"
+    add_content_slide("한국형 특화 보안 및 성능 전략", [
+        "### K-Compliance Strategy",
+        "망분리 5호 예외 지원: U+ 인프라 내 PaaS 래핑 구조를 통한 샌드박스 우회",
+        "행정 자동화: 금감원 가이드라인 맞춤형 '보안 사고 방어 일지' 원클릭 생성",
+        "### Performance Optimization",
+        "스트리밍 비동기 분석: TTFT를 최소화하는 실시간 병렬 분석",
+        "초경량 보안 가디언: 2B 이하 sLLM 배치로 연산 부하 5% 미만 유지"
     ])
 
-    # 12. Performance Optimization
-    add_content_slide("보안과 성능의 균형: 레이턴시 최적화 전략", [
-        "Async Streaming: 생성과 동시에 보안 분석을 수행하여 대기 시간 최소화",
-        "Lightweight Agents: 2B 이하의 초경량 보안 모델을 통한 연산 부하 5% 미만 억제",
-        "Parallel Pipeline: 데이터 조회, 정제, 분석 과정을 병렬로 처리",
-        "Result: 강력한 3중 보안에도 불구하고 기존 대비 95% 이상의 성능 유지"
+    add_content_slide("AI 자산 생애주기 및 파기 (AI-Sanitizer)", [
+        "### 모델 퇴역 및 자산 소멸 전략",
+        "문제: 모델 내 학습 데이터의 '메모리 현상(Memory Leakage)' 및 역공학 위협",
+        "### 핵심 솔루션: AI-Sanitizer",
+        "멀티레이어 와이핑(Wiping): GPU 메모리, 벡터 DB, 가중치 파일 완전 삭제",
+        "보안 파기 증명서: KISA 가이드라인 준수 증빙 리포트 자동 생성",
+        "Lifecycle Dashboard: 전사 AI 자산 인벤토리 및 보안 드리프트 상시 감시"
+    ], image_path=LIFECYCLE_IMG)
+
+    add_content_slide("상품화 로드맵 (5대 라인업)", [
+        "1. AI-Sanitizer: 자산 완전 파기 및 증명 솔루션",
+        "2. AI Lifecycle Governance: 전사 자산 관리 대시보드",
+        "3. Model Memory Leakage Scanner: 유출 리스크 자동 감사기",
+        "4. AI Compliance-as-a-Service: 글로벌 규제 대응 자동화 패키지",
+        "5. AI Cyber Insurance Linkage: 보안 점수 기반 보험료 할인 연계 상품"
     ])
 
-    # 13. Final Message
-    add_content_slide("Closing: AX 전환의 신뢰 가드레일", [
-        "보안은 혁신의 걸림돌이 아니라, 혁신의 속도를 높여주는 브레이크",
-        "Safe AI는 기업이 마음 놓고 AI를 현업에 투입하게 만드는 마지막 퍼즐",
-        "U+ Safe AI: 가장 안전한 기업용 AI 업무 환경의 표준이 되겠습니다."
+    # PART 4. 세일즈 로직
+    add_content_slide("PART 4. CISO 설득 논리 및 성공 시나리오", [
+        "### Key Messages",
+        "Accountability: 사고 책임 소재 명확화 및 법적 면책 근거 제공",
+        "Enabler: 혁신의 방해자가 아닌 '안전한 AX의 조력자'로의 포지셔닝",
+        "Asset Protection: 직접적 재무 손실(환각/오작동) 차단",
+        "### 신한은행 '평화로운 하루' 시나리오",
+        "오전: AI-SPM이 API Key 노출 탐지 및 즉시 격리",
+        "오후: Agent-SPM이 에이전트의 투자 성향 조작 의도 포착 및 차단",
+        "마감: 금감원 제출용 50페이지 실사 리포트 자동 생성 및 정시 퇴근"
     ])
+
+    # PART 5. 로드맵
+    roadmap_table = [
+        ["단계", "핵심 타겟", "수요(Urgency)", "수익성(Profit)"],
+        ["Phase 1 (단기)", "망분리 대응 금융권", "최상 (필수)", "중간"],
+        ["Phase 2 (중기)", "AX 전면 도입 대기업", "높음 (A2A 리스크)", "상 (기술 프리미엄)"],
+        ["Phase 3 (장기)", "생태계 및 리스크 관리", "보통", "최상 (보험 연계)"]
+    ]
+    add_content_slide("서비스 진화 로드맵 요약", [
+        "단기적으로 규제 대응(망분리) '미끼 상품'으로 진입하여, 중기적 초격차 기술(SPM)로 해자를 구축하고, 장기적 금융 생태계(보험/파기)로 수익 극대화"
+    ], table_data=roadmap_table)
 
     save_path = "/Users/flyngcoq/AI_Project/40_Projects/Work/Safe_AI/Next_Gen_AI_Security_Strategy.pptx"
     prs.save(save_path)

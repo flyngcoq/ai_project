@@ -13,9 +13,15 @@
 - **섀도우 AI & 방치된 자산**: 관리되지 않는 오픈소스 모델의 무분별한 도입과, 사용 중지된 모델 내부에 남겨진 민감 데이터(Memory Leakage) 유출 위험.
 - **규제 피로도**: KISA 안내서, 금감원 가이드라인, EU AI Act 등 복잡해지는 글로벌 규제에 대한 행정적 대응 한계.
 
-### 3. 핵심 전략 목표 (Strategic Objectives)
-1. **Visibility**: 에이전트의 사고 과정(CoT) 및 데이터 흐름에 대한 완벽한 가시성 확보.
-2. **Control**: 자율형 AI의 일탈 행위를 실시간으로 제어할 수 있는 'Kill-Switch' 구현.
+### 3. 글로벌 표준 부합성 (Alignment with Gartner AI TRiSM)
+본 전략은 가트너가 제시한 **AI TRiSM(Trust, Risk and Security Management)** 프레임워크를 기반으로 설계됨.
+- **Trust (신뢰성)**: CoT 가시성 확보 및 Compliance XAI를 통한 설명 가능한 AI 구현.
+- **Risk (리스크)**: Semantic DLP 및 AI-DSPM을 통한 데이터 유출 및 환각 리스크 통제.
+- **Security (보안)**: Agent-SPM을 통한 실시간 런타임 보호 및 안티 포이즈닝.
+
+### 4. 핵심 전략 목표 (Strategic Objectives)
+1. **Visibility**: AI TRiSM의 'Trust'를 실현하는 에이전트 사고 과정(CoT) 및 데이터 흐름의 완벽 가시성 확보.
+2. **Control**: 실시간 'Runtime Enforcement'를 통한 자율형 AI의 일탈 행위 차단 (Kill-Switch).
 3. **Trust**: 증명 가능한 보안 이력을 통한 AI 서비스의 신뢰도 및 수용성 제고.
 4. **Efficiency**: 규제 대응 업무 자동화를 통해 보안 조직의 운영 효율 극대화.
 

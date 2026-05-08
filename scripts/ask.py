@@ -1,11 +1,16 @@
 import sys
 from pathlib import Path
 
-# Add project root to path
-sys.path.append(str(Path(__file__).parent.parent))
+# Add project root and agents directory to path
+root = Path(__file__).parent.parent
+sys.path.append(str(root))
+sys.path.append(str(root / "scripts" / "agents")) # For telegram_bot
 
 from core.orchestrator import orchestrate_agents
-from telegram_bot import retrieve_context
+try:
+    from agents.telegram_bot import retrieve_context
+except ImportError:
+    from telegram_bot import retrieve_context
 
 def main():
     if len(sys.argv) < 2:

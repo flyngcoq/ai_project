@@ -1,6 +1,19 @@
 import json
 import urllib.request
-from core.config import OLLAMA_API_URL, MODEL_NAME
+import urllib.error
+from core.config import OLLAMA_API_URL, LOCAL_OLLAMA_URL, MODEL_NAME, SAFE_AI_GATEWAY_TOKEN
+
+def _make_request(url, data, use_token=True):
+    """Internal helper to make a request to Ollama with optional token."""
+    headers = {'Content-Type': 'application/json'}
+    if use_token and SAFE_AI_GATEWAY_TOKEN:
+        headers['Authorization'] = f"Bearer {SAFE_AI_GATEWAY_TOKEN}"
+    
+    return urllib.request.Request(
+        url, 
+        data=json.dumps(data).encode('utf-8'),
+        headers=headers
+    )
 
 def generate_with_ollama(system_prompt: str, user_content: str = "", model: str = None, images: list = None) -> str:
     target_model = model if model else MODEL_NAME
@@ -15,17 +28,24 @@ def generate_with_ollama(system_prompt: str, user_content: str = "", model: str 
         "messages": messages,
         "stream": False
     }
-    req = urllib.request.Request(
-        OLLAMA_API_URL, 
-        data=json.dumps(data).encode('utf-8'),
-        headers={'Content-Type': 'application/json'}
-    )
+    
+    # Try Gateway first
     try:
-        with urllib.request.urlopen(req) as response:
+        req = _make_request(OLLAMA_API_URL, data)
+        with urllib.request.urlopen(req, timeout=10) as response:
             result = json.loads(response.read().decode('utf-8'))
             return result.get("message", {}).get("content", "")
     except Exception as e:
-        print(f"Error communicating with Ollama: {e}")
+        # Fallback to Local if Gateway is different from Local and failed
+        if OLLAMA_API_URL != LOCAL_OLLAMA_URL:
+            try:
+                # Silent fallback to local
+                local_req = _make_request(LOCAL_OLLAMA_URL, data, use_token=False)
+                with urllib.request.urlopen(local_req, timeout=20) as response:
+                    result = json.loads(response.read().decode('utf-8'))
+                    return result.get("message", {}).get("content", "")
+            except Exception:
+                pass 
         return None
 
 def stream_with_ollama(system_prompt: str, user_content: str = "", model: str = None):
@@ -41,14 +61,11 @@ def stream_with_ollama(system_prompt: str, user_content: str = "", model: str = 
         "stream": True
     }
     
-    req = urllib.request.Request(
-        OLLAMA_API_URL, 
-        data=json.dumps(data).encode('utf-8'),
-        headers={'Content-Type': 'application/json'}
-    )
-    
+    # Try Gateway first
     try:
-        with urllib.request.urlopen(req) as response:
+        req = _make_request(OLLAMA_API_URL, data)
+        # Increased timeout for local models that might need loading time
+        with urllib.request.urlopen(req, timeout=15) as response:
             for line in response:
                 if line:
                     chunk = json.loads(line.decode('utf-8'))
@@ -58,5 +75,21 @@ def stream_with_ollama(system_prompt: str, user_content: str = "", model: str = 
                     if chunk.get("done"):
                         break
     except Exception as e:
-        print(f"Error streaming with Ollama: {e}")
-        yield f"❌ 스트리밍 오류: {str(e)}"
+        # Fallback to Local
+        if OLLAMA_API_URL != LOCAL_OLLAMA_URL:
+            try:
+                local_req = _make_request(LOCAL_OLLAMA_URL, data, use_token=False)
+                with urllib.request.urlopen(local_req, timeout=30) as response:
+                    for line in response:
+                        if line:
+                            chunk = json.loads(line.decode('utf-8'))
+                            content = chunk.get("message", {}).get("content", "")
+                            if content:
+                                yield content
+                            if chunk.get("done"):
+                                break
+            except Exception as local_e:
+                yield f"❌ 로컬 연결 오류: {str(local_e)}"
+        else:
+            # If OLLAMA_API_URL IS LOCAL_OLLAMA_URL, and it failed
+            yield f"❌ 모델 연결 불가 (Ollama 확인 필요): {str(e)}"
